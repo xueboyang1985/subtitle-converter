@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subtitle Converter & Transcript Exporter - Free Online Tool</title>
+<meta name="description" content="Convert and export subtitles (SRT, VTT, ASS) to Markdown, CSV, JSON, or plain text. 100% in your browser. No upload, no server, no subscription. Free for single-file export.">
+<meta name="keywords" content="subtitle converter, SRT to VTT, VTT to SRT, subtitle to text, transcript exporter, SRT to CSV, subtitle to Markdown, extract text from subtitles">
+<meta property="og:title" content="Subtitle Converter - Free Online Tool">
+<meta property="og:description" content="Convert your subtitle files to Markdown, CSV, JSON, or plain text. 100% offline, no subscription.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">🎬</div>
+    <h1>Subtitle Converter &amp; Transcript Exporter</h1>
+    <p class="subtitle">Turn SRT, VTT, or ASS subtitles into clean text, Markdown, CSV, or JSON — no subscription needed</p>
+  </div>
+
+  <div class="card upload-card" id="upload-card">
+    <div class="upload-zone" id="drop-zone">
+      <div class="upload-icon">📂</div>
+      <p class="upload-text">Drop a <strong>subtitle file (.srt, .vtt, .ass)</strong> here</p>
+      <p class="upload-hint">or <a href="#" id="click-upload">browse your files</a></p>
+      <input type="file" id="file-input" accept=".srt,.vtt,.ass,.txt" hidden>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <span>Export subtitles from your video player (or download from YouTube/streaming sites)</span>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <span>Drag & drop the file here, or click browse</span>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <span>Preview and export as Markdown, CSV, JSON, or plain text</span>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <span>Free for one file — PRO for unlimited conversions + format conversion</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="card results-card" id="results-card" style="display:none;">
+    <div class="results-header">
+      <h2 id="file-info">0 entries</h2>
+      <p id="detail-count">Upload a file to get started</p>
+      <div class="results-actions">
+        <button class="btn btn-export" data-format="txt">📄 Export as TXT</button>
+        <button class="btn btn-export" data-format="srt">🎬 Export as SRT</button>
+        <button class="btn btn-export" data-format="vtt">🎬 Export as VTT</button>
+        <button class="btn btn-export" data-format="md">📝 Export as Markdown</button>
+        <button class="btn btn-export" data-format="csv">📊 Export as CSV</button>
+        <button class="btn btn-export" data-format="json">📦 Export as JSON</button>
+      </div>
+      <p class="free-hint" id="free-hint">Free exports include the first 30 subtitle entries. <a href="#" id="btn-show-pro">Upgrade to PRO</a> for all entries + unlimited files.</p>
+    </div>
+    <div class="book-list" id="entry-list"></div>
+  </div>
+
+  <!-- PRO upsell -->
+  <div class="card pro-card" id="pro-card">
+    <div class="pro-header">
+      <span class="pro-badge-large">PRO</span>
+      <span>Export all entries, convert between formats, unlimited files — one-time payment, no subscription</span>
+      <button class="btn btn-pro" id="btn-show-pro2">Learn More</button>
+    </div>
+  </div>
+
+  <!-- Sample data -->
+  <div class="card example-card">
+    <p class="example-text">📝 Don't have a subtitle file? Try the demo with sample data</p>
+    <button class="btn btn-sample" id="load-sample">📂 Load Sample Subtitles</button>
+  </div>
+
+  <div class="footer">
+    <p>100% local &bull; No upload &bull; No server &bull; Your file never leaves your device</p>
+    <p class="footer-small">Made for video editors, language learners, and content creators</p>
+  </div>
+</div>
+
+<!-- PRO Modal -->
+<div class="modal-overlay" id="pro-modal" style="display:none;">
+  <div class="modal">
+    <button class="modal-close" id="modal-close">✕</button>
+    <h2>🔓 Upgrade to PRO</h2>
+    <table class="compare-table">
+      <tr><th>Feature</th><th>Free</th><th>PRO</th></tr>
+      <tr><td>Entries per export</td><td>30 entries</td><td>Unlimited</td></tr>
+      <tr><td>Files processed</td><td>1 file</td><td>Unlimited</td></tr>
+      <tr><td>Format conversion</td><td>—</td><td>SRT ↔ VTT ↔ ASS</td></tr>
+      <tr><td>Export formats</td><td>TXT, MD, CSV, JSON</td><td>TXT, SRT, VTT, MD, CSV, JSON</td></tr>
+      <tr><td>100% local (no upload)</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Priority support</td><td>—</td><td>✅</td></tr>
+    </table>
+    <p class="pro-price">$6.99 <span class="pro-price-sub">one-time payment · 3 devices</span></p>
+    <p style="text-align:center;margin-bottom:12px;"><a href="#" class="btn btn-pro" style="text-decoration:none;display:inline-block;background:#10b981;" id="btn-buy-pro">🛒 Buy a PRO Key</a></p>
+    <div class="license-row">
+      <input type="text" id="pro-key-input" placeholder="Enter PRO key (e.g. SUBTITLE-XXXX-XXXX-XXXX-XXXX)">
+      <button class="btn btn-pro" id="btn-activate">Activate</button>
+    </div>
+    <p class="pro-hint">Each key works on up to 3 devices · <a href="guide.html">User Guide & FAQ</a></p>
+  </div>
+</div>
+
+<script src="parser.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
