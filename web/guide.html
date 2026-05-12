@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Guide & FAQ - Subtitle Converter</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .guide-section { margin-bottom: 28px; }
+  .guide-section h2 { font-size: 18px; color: #1a1a1a; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid #e0e7ff; }
+  .guide-section h3 { font-size: 15px; color: #444; margin-top: 16px; margin-bottom: 8px; }
+  .guide-section p, .guide-section li { font-size: 14px; color: #555; line-height: 1.7; }
+  .guide-section ol, .guide-section ul { padding-left: 20px; }
+  .guide-section li { margin-bottom: 6px; }
+  .guide-section code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+  .faq-item { margin-bottom: 16px; }
+  .faq-q { font-weight: 600; color: #312e81; margin-bottom: 4px; }
+  .faq-a { color: #555; padding-left: 16px; border-left: 3px solid #e0e7ff; }
+  .back-link { display: inline-block; margin-bottom: 24px; color: #6366f1; text-decoration: none; font-weight: 600; }
+  .back-link:hover { text-decoration: underline; }
+  .pro-steps { background: #f5f7ff; padding: 16px 20px; border-radius: 10px; margin-top: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="back-link">← Back to Subtitle Converter</a>
+  <div class="card">
+    <h1 style="font-size:24px;margin-bottom:8px;">User Guide & FAQ</h1>
+    <p style="color:#888;font-size:14px;">Learn how to use Subtitle Converter and get answers to common questions</p>
+  </div>
+
+  <div class="card">
+    <div class="guide-section">
+      <h2>Getting Started</h2>
+      <ol>
+        <li>Go to the <a href="index.html">Subtitle Converter</a> page</li>
+        <li>Drag and drop an <strong>.srt</strong>, <strong>.vtt</strong>, or <strong>.ass</strong> file onto the upload area, or click "browse your files" to select one</li>
+        <li>Your subtitles will be parsed and displayed in a preview panel</li>
+        <li>Choose an export format (TXT, SRT, VTT, Markdown, CSV, or JSON) to download</li>
+      </ol>
+    </div>
+
+    <div class="guide-section">
+      <h2>Where to Get Subtitle Files</h2>
+      <ul>
+        <li><strong>YouTube:</strong> Use the CC button, then "More Actions" → "Open transcript" → copy or download</li>
+        <li><strong>VLC Player:</strong> Open your video, go to Subtitle → Add Subtitle File, or download from <a href="https://opensubtitles.org" target="_blank">opensubtitles.org</a></li>
+        <li><strong>Streaming sites:</strong> Many streaming platforms allow subtitle downloads alongside videos</li>
+        <li><strong>Export from video editors:</strong> Premiere Pro, DaVinci Resolve, and Final Cut Pro can export SRT files</li>
+      </ul>
+    </div>
+
+    <div class="guide-section">
+      <h2>Export Formats Explained</h2>
+
+      <h3>Plain Text (TXT)</h3>
+      <p>Extracts only the text content, removing all timestamps. Best for reading, note-taking, or AI prompts.</p>
+
+      <h3>SRT (SubRip)</h3>
+      <p>The most widely supported subtitle format. Works with all video players and editors. Uses comma as decimal separator (<code>00:00:01,500</code>).</p>
+
+      <h3>VTT (WebVTT)</h3>
+      <p>Modern web subtitle format, used by HTML5 video players. Uses period as decimal separator (<code>00:00:01.500</code>).</p>
+
+      <h3>Markdown (MD)</h3>
+      <p>Formatted as a timestamp heading followed by text paragraphs. Great for publishing transcripts on blogs or documentation.</p>
+
+      <h3>CSV</h3>
+      <p>Spreadsheet-friendly format with columns: index, start, end, text. Useful for analysis or translation workflows.</p>
+
+      <h3>JSON</h3>
+      <p>Structured data format for developers. Each entry has index, start, end, and text fields.</p>
+    </div>
+
+    <div class="guide-section">
+      <h2>PRO Features</h2>
+      <div class="pro-steps">
+        <ol>
+          <li>Purchase a PRO key from our store (link coming soon — $6.99 one-time)</li>
+          <li>Copy the key you receive via email</li>
+          <li>Click "Learn More" or "Upgrade to PRO" on the Subtitle Converter page</li>
+          <li>Paste your key and click "Activate"</li>
+        </ol>
+        <p style="margin-top: 10px; font-size: 13px; color: #666;">✅ Each key works on up to 3 devices · No subscription · One-time payment</p>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <h2>FAQ</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Is my file uploaded to a server?</div>
+        <div class="faq-a">No. Everything runs in your browser. Your files never leave your device. The page works even offline after it's loaded.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What is the free limit?</div>
+        <div class="faq-a">Free exports include the first 30 subtitle entries. PRO unlocks all entries (unlimited) and format conversion between SRT/VTT/ASS.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can I convert SRT to VTT and vice versa?</div>
+        <div class="faq-a">Yes. PRO allows exporting in any format regardless of the input format. Free version exports TXT, Markdown, CSV, and JSON only.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How many devices can I use one PRO key on?</div>
+        <div class="faq-a">Up to 3 devices per key. The key is stored locally and validated offline — no account needed.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What subtitle formats are supported?</div>
+        <div class="faq-a">SRT (.srt), VTT/WebVTT (.vtt), ASS/SSA (.ass), and plain text (.txt) files with time-stamped content.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can I use this for commercial translation work?</div>
+        <div class="faq-a">Absolutely. PRO users can process unlimited files — great for translation agencies, content creators, and educators.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>100% local · No upload · No server</p>
+  </div>
+</div>
+</body>
+</html>
