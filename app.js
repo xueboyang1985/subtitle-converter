@@ -295,9 +295,9 @@ and space exploration updates.`;
     btnShowPro2.addEventListener('click', () => { proModal.style.display = 'flex'; });
   }
   if (btnBuyPro) {
-    btnBuyPro.addEventListener('click', () => {
-      // Update this with actual Gumroad/LemonSqueezy link
-      alert('PRO key purchase link will be added after product setup.');
+    btnBuyPro.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.open('https://xuebo8.gumroad.com/l/bvewo', '_blank');
     });
   }
   document.getElementById('modal-close').addEventListener('click', () => { proModal.style.display = 'none'; });
