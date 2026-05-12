@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('#btn-show-pro, #btn-show-pro2').forEach(b => {
       b.textContent = '✅ Activated'; b.style.background = '#10b981';
     });
+    freeHint.textContent = 'PRO mode — all entries and export formats available.';
   }
 
   // ─── File handling ─────────────────────────────────────
@@ -105,6 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show free hint with entry count
     if (!isPro) {
       freeHint.innerHTML = `Free exports include the first ${MAX_FREE_ENTRIES} of ${result.totalEntries} entries. <a href="#" id="btn-show-pro">Upgrade to PRO</a> for all entries + format conversion + unlimited files.`;
+      // Re-bind click handler since innerHTML replaced the old element
+      document.getElementById('btn-show-pro').addEventListener('click', () => { proModal.style.display = 'flex'; });
     }
 
     // Render entry list
@@ -336,6 +339,16 @@ and space exploration updates.`;
     d.textContent = str;
     return d.innerHTML;
   }
+
+  // ─── New File button ────────────────────────────────────
+  document.getElementById('btn-new-file').addEventListener('click', (e) => {
+    e.preventDefault();
+    uploadCard.style.display = 'block';
+    resultsCard.style.display = 'none';
+    currentData = null;
+    fileInput.value = '';
+    resultsCard.scrollIntoView({ behavior: 'smooth' });
+  });
 
 });
 
