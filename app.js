@@ -303,16 +303,48 @@ and space exploration updates.`;
   document.getElementById('modal-close').addEventListener('click', () => { proModal.style.display = 'none'; });
   proModal.addEventListener('click', (e) => { if (e.target === proModal) proModal.style.display = 'none'; });
 
-  btnActivate.addEventListener('click', () => {
+  btnActivate.addEventListener('click', async () => {
     const key = proKeyInput.value.trim().toUpperCase();
-    if (!validateProKey(key)) {
-      alert('Invalid PRO key. Enter a valid key purchased from our store.');
+    if (!key) { alert('Enter a PRO key first.'); return; }
+
+    // Offline SUBTITLE-XXXX keys (for testing)
+    if (key.startsWith('SUBTITLE-')) {
+      if (!validateProKey(key)) {
+        alert('Invalid PRO key. Enter a valid key purchased from our store.');
+        return;
+      }
+      if (!checkDeviceLimit(key)) {
+        alert(`This key has been activated on too many devices (max ${MAX_DEVICES}).`);
+        return;
+      }
+      activatePro(key);
       return;
     }
-    if (!checkDeviceLimit(key)) {
-      alert(`This key has been activated on too many devices (max ${MAX_DEVICES}).`);
-      return;
+
+    // Gumroad license key — verify via API
+    btnActivate.textContent = 'Verifying...';
+    btnActivate.disabled = true;
+    try {
+      const res = await fetch('https://api.gumroad.com/v2/licenses/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `product_permalink=bvewo&license_key=${encodeURIComponent(key)}`
+      });
+      const data = await res.json();
+      if (data.success && data.purchase) {
+        activatePro(key);
+      } else {
+        alert('This license key is invalid. Make sure you entered it exactly as received in your email.');
+      }
+    } catch (err) {
+      alert('Failed to verify license. Check your internet connection and try again.');
+    } finally {
+      btnActivate.textContent = 'Activate';
+      btnActivate.disabled = false;
     }
+  });
+
+  function activatePro(key) {
     isPro = true;
     if (proBadge) proBadge.textContent = '✓ PRO';
     if (proMsg) proMsg.textContent = 'PRO activated — unlimited entries & format conversion unlocked';
@@ -323,7 +355,7 @@ and space exploration updates.`;
     freeHint.innerHTML = 'PRO mode — all entries and export formats available.';
     proModal.style.display = 'none';
     localStorage.setItem('subtitleconverter_pro', key);
-  });
+  }
 
   // ─── Helpers ──────────────────────────────────────────
   function showError(msg) {
