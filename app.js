@@ -328,7 +328,7 @@ and space exploration updates.`;
       const res = await fetch('https://api.gumroad.com/v2/licenses/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `product_permalink=bvewo&license_key=${encodeURIComponent(key)}`
+        body: `product_id=vYjz6BS7IFlW93oB-_255g==&license_key=${encodeURIComponent(key)}&increment_uses_count=false`
       });
       const data = await res.json();
       if (data.success && data.purchase) {
