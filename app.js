@@ -328,10 +328,14 @@ and space exploration updates.`;
       const res = await fetch('https://api.gumroad.com/v2/licenses/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `product_id=vYjz6BS7IFlW93oB-_255g==&license_key=${encodeURIComponent(key)}&increment_uses_count=false`
+        body: `product_id=vYjz6BS7IFlW93oB-_255g==&license_key=${encodeURIComponent(key)}`
       });
       const data = await res.json();
       if (data.success && data.purchase) {
+        if (data.uses >= 3) {
+          alert(`This key has been activated on too many devices (max 3). Current uses: ${data.uses}`);
+          return;
+        }
         activatePro(key);
       } else {
         alert('This license key is invalid. Make sure you entered it exactly as received in your email.');
