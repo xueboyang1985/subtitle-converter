@@ -297,7 +297,11 @@ and space exploration updates.`;
   if (btnBuyPro) {
     btnBuyPro.addEventListener('click', (e) => {
       e.preventDefault();
-      window.open('https://xuebo8.gumroad.com/l/bvewo', '_blank');
+      const w = Math.min(600, window.innerWidth - 40);
+      const h = Math.min(700, window.innerHeight - 40);
+      const left = Math.max(0, (window.innerWidth - w) / 2);
+      const top = Math.max(0, (window.innerHeight - h) / 2);
+      window.open('https://xuebo8.gumroad.com/l/bvewo', 'gumroad-checkout', `width=${w},height=${h},left=${left},top=${top},menubar=no,toolbar=no,status=no`);
     });
   }
   document.getElementById('modal-close').addEventListener('click', () => { proModal.style.display = 'none'; });
