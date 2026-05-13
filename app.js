@@ -50,12 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return entry.devices.length <= MAX_DEVICES;
   }
 
-  // Check saved PRO key (offline or Gumroad-activated)
+  // Check saved PRO key
   const saved = localStorage.getItem('subtitleconverter_pro');
-  const proActivated = localStorage.getItem('sce_pro_activated') === 'true';
-  if (proActivated && saved) {
-    isPro = true;
-  } else if (saved && validateProKey(saved)) {
+  if (saved && validateProKey(saved)) {
     isPro = true;
     if (proBadge) proBadge.textContent = '✓ PRO';
     if (proMsg) proMsg.textContent = 'PRO activated — unlimited entries & format conversion unlocked';
@@ -300,11 +297,7 @@ and space exploration updates.`;
   if (btnBuyPro) {
     btnBuyPro.addEventListener('click', (e) => {
       e.preventDefault();
-      const w = Math.min(600, window.innerWidth - 40);
-      const h = Math.min(700, window.innerHeight - 40);
-      const left = Math.max(0, (window.innerWidth - w) / 2);
-      const top = Math.max(0, (window.innerHeight - h) / 2);
-      window.open('https://xuebo8.gumroad.com/l/bvewo', 'gumroad-checkout', `width=${w},height=${h},left=${left},top=${top},menubar=no,toolbar=no,status=no`);
+      window.open('https://xuebo8.gumroad.com/l/bvewo', '_blank');
     });
   }
   document.getElementById('modal-close').addEventListener('click', () => { proModal.style.display = 'none'; });
@@ -366,7 +359,6 @@ and space exploration updates.`;
     freeHint.innerHTML = 'PRO mode — all entries and export formats available.';
     proModal.style.display = 'none';
     localStorage.setItem('subtitleconverter_pro', key);
-    localStorage.setItem('sce_pro_activated', 'true');
   }
 
   // ─── Helpers ──────────────────────────────────────────
