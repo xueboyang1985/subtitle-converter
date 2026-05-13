@@ -50,9 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return entry.devices.length <= MAX_DEVICES;
   }
 
-  // Check saved PRO key
+  // Check saved PRO key (offline or Gumroad-activated)
   const saved = localStorage.getItem('subtitleconverter_pro');
-  if (saved && validateProKey(saved)) {
+  const proActivated = localStorage.getItem('sce_pro_activated') === 'true';
+  if (proActivated && saved) {
+    isPro = true;
+  } else if (saved && validateProKey(saved)) {
     isPro = true;
     if (proBadge) proBadge.textContent = '✓ PRO';
     if (proMsg) proMsg.textContent = 'PRO activated — unlimited entries & format conversion unlocked';
@@ -363,6 +366,7 @@ and space exploration updates.`;
     freeHint.innerHTML = 'PRO mode — all entries and export formats available.';
     proModal.style.display = 'none';
     localStorage.setItem('subtitleconverter_pro', key);
+    localStorage.setItem('sce_pro_activated', 'true');
   }
 
   // ─── Helpers ──────────────────────────────────────────
