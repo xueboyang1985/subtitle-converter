@@ -1,7 +1,7 @@
 // app.js - Subtitle Converter App
 
 const PRO_SECRET = 'SUBTITLE-CONVERTER-PRO-2024'.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-const MAX_FREE_ENTRIES = 30;
+const MAX_FREE_ENTRIES = 10;
 let isPro = false;
 let currentData = null;
 let currentFilename = 'subtitles';
