@@ -366,6 +366,7 @@ and space exploration updates.`;
     freeHint.innerHTML = 'PRO mode — all entries and export formats available.';
     proModal.style.display = 'none';
     localStorage.setItem('subtitleconverter_pro', key);
+    localStorage.setItem('subtitleconverter_pro_activated', 'true');
   }
 
   // ─── Helpers ──────────────────────────────────────────
