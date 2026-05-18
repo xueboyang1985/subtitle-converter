@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Check saved PRO key
   const saved = localStorage.getItem('subtitleconverter_pro');
-  if (saved && validateProKey(saved)) {
+  const activated = localStorage.getItem('subtitleconverter_pro_activated') === 'true';
+  if (saved && (activated || validateProKey(saved))) {
     isPro = true;
     if (proBadge) proBadge.textContent = '✓ PRO';
     if (proMsg) proMsg.textContent = 'PRO activated — unlimited entries & format conversion unlocked';
