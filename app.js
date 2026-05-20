@@ -1,7 +1,7 @@
 // app.js - Subtitle Converter App
 
 const PRO_SECRET = 'SUBTITLE-CONVERTER-PRO-2024'.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-const MAX_FREE_ENTRIES = 10;
+const MAX_FREE_ENTRIES = 30;
 let isPro = false;
 let currentData = null;
 let currentFilename = 'subtitles';
@@ -52,8 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Check saved PRO key
   const saved = localStorage.getItem('subtitleconverter_pro');
-  const activated = localStorage.getItem('subtitleconverter_pro_activated') === 'true';
-  if (saved && (activated || validateProKey(saved))) {
+  if (saved && validateProKey(saved)) {
     isPro = true;
     if (proBadge) proBadge.textContent = '✓ PRO';
     if (proMsg) proMsg.textContent = 'PRO activated — unlimited entries & format conversion unlocked';
@@ -309,6 +308,7 @@ and space exploration updates.`;
   }
   document.getElementById('modal-close').addEventListener('click', () => { proModal.style.display = 'none'; });
   proModal.addEventListener('click', (e) => { if (e.target === proModal) proModal.style.display = 'none'; });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && proModal.style.display === 'flex') proModal.style.display = 'none'; });
 
   btnActivate.addEventListener('click', async () => {
     const key = proKeyInput.value.trim().toUpperCase();
@@ -345,7 +345,18 @@ and space exploration updates.`;
         }
         activatePro(key);
       } else {
-        alert('This license key is invalid. Make sure you entered it exactly as received in your email.');
+        // Try bundle key
+        const bres = await fetch('https://api.gumroad.com/v2/licenses/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ product_id: 'xdlh1FHKAU0E7q3ZRuHPaw==', license_key: key })
+        });
+        const bdata = await bres.json();
+        if (bdata.success && bdata.purchase) {
+          activatePro(key);
+        } else {
+          alert('This license key is invalid. Make sure you entered it exactly as received in your email.');
+        }
       }
     } catch (err) {
       alert('Failed to verify license. Check your internet connection and try again.');
@@ -366,7 +377,6 @@ and space exploration updates.`;
     freeHint.innerHTML = 'PRO mode — all entries and export formats available.';
     proModal.style.display = 'none';
     localStorage.setItem('subtitleconverter_pro', key);
-    localStorage.setItem('subtitleconverter_pro_activated', 'true');
   }
 
   // ─── Helpers ──────────────────────────────────────────
